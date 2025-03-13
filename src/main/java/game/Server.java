@@ -56,10 +56,35 @@ public class Server {
                 }
 
                 out.println("NAME_ACCEPTED " + username);
-                
+                broadcastUserList();
+
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e);
+            } finally {
+                if (username != null) {
+                    clients.remove(username);
+                    broadcastUserList();
+                }
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             }
         }
+
+
+        private void broadcastUserList() {
+            StringBuilder userList = new StringBuilder("USER_LIST");
+            synchronized (clients) {
+                for (String user : clients.keySet()) {
+                    userList.append(" ").append(user);
+                }
+                for (PrintWriter writer : clients.values()) {
+                    writer.println(userList.toString());
+                }
+            }
+        }
+
     }
 }
