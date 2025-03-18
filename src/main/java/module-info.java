@@ -3,6 +3,8 @@ module com.example.memory {
     requires javafx.fxml;
     requires javafx.web;
 
+    exports game to javafx.graphics;
+
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
