@@ -5,12 +5,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+
+import java.io.*;
+import java.net.*;
+import javafx.application.Platform;
 
 public class Client extends Application {
     private String username;
     private Stage mainStage;
+    private ListView<String> userList = new ListView<>();
+    private BufferedReader in;
+    private PrintWriter out;
 
     public static void main(String[] args) {
         launch(args);
@@ -46,6 +55,17 @@ public class Client extends Application {
 
     private Scene createMainScene() {
         VBox root = new VBox(10);
-        return new Scene(root, 400, 300);
+        root.setPadding(new Insets(20, 20, 20, 20));
+        Scene scene = new Scene(root, 500, 400);
+        Button requestGameButton = new Button("Posalji zahtjev");
+        requestGameButton.setOnAction(event -> {
+            String selectedUser = userList.getSelectionModel().getSelectedItem();
+            if (selectedUser != null) {
+                out.println("GAME_REQUEST " + selectedUser);
+            }
+        });
+
+        root.getChildren().addAll(new Label("Aktivni korisnici:"), userList, requestGameButton);
+        return scene;
     }
 }
