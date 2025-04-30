@@ -1,0 +1,59 @@
+[33mcommit 9246b78d98ac5cbc2268914ac0ae2924d84e26c4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Sat Mar 22 18:40:50 2025 +0100
+
+    Add connection to server, add MemoryGame class with game logic
+
+[33mcommit 350b6c3019a27361f786f00a7abdb626712fefe6[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Tue Mar 18 14:12:00 2025 +0100
+
+    Modify main scene, undo deleted classes
+
+[33mcommit 0317bd1779a3ca5e925a3a320ae5f43c02085f2d[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Tue Mar 18 13:29:03 2025 +0100
+
+    Add Client class, create login screen and delete unused classes
+
+[33mcommit b6ad4476d6805fd1801358e7a18f7be644d2c39a[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Fri Mar 14 13:07:22 2025 +0100
+
+    Enable message exchange, sending requests, starting games, and managing active games.
+
+[33mcommit f40bb32c5277d895c0ef22c7b570577492212be5[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Fri Mar 14 12:55:21 2025 +0100
+
+    Add Game class
+
+[33mcommit edab5fbbea575a6fda300788f475549fd37e9793[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Thu Mar 13 22:59:28 2025 +0100
+
+    Add a function to refresh the list of users
+
+[33mcommit 339369287db2ea4c06abaa450c858207617c9d81[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Thu Mar 13 22:48:24 2025 +0100
+
+    Enable user login and username assignment
+
+[33mcommit 364e43ea6e0475bdbc35cfac0d610c598b3b3b0c[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Thu Mar 13 22:32:52 2025 +0100
+
+    Add basic server structure and main method
+
+[33mcommit b78f863653b40cb2124f75d514876639e815a313[m
+Author: MartinaDragicevic <m.dragicevicc44@gmail.com>
+Date:   Thu Mar 13 19:24:57 2025 +0100
+
+    Add FX to project
+
+[33mcommit 95f40536f02f7dcd9d6b3aa2faab73e32ff06b76[m
+Author: MartinaDragicevic <146468278+MartinaDragicevic@users.noreply.github.com>
+Date:   Wed Mar 12 16:30:45 2025 +0100
+
+    Initial commit

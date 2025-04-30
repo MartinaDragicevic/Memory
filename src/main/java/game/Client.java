@@ -83,6 +83,16 @@ public class Client extends Application {
                 try {
                     while (true) {
                         String line = in.readLine();
+                        if (line == null) {
+                            Platform.runLater(() -> {
+                                Alert alert = new Alert(AlertType.ERROR);
+                                alert.setTitle("Connection Error");
+                                alert.setContentText("Lost connection to the server.");
+                                alert.showAndWait();
+                                primaryStage.close();
+                            });
+                            break;
+                        }
                         if (line.startsWith("SUBMIT_NAME")) {
                             out.println(username);
                         } else if (line.startsWith("NAME_ACCEPTED")) {
@@ -117,11 +127,29 @@ public class Client extends Application {
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("Connection Error");
+                        alert.setContentText("An error occurred: " + e.getMessage());
+                        alert.showAndWait();
+                        primaryStage.close();
+                    });
+                } finally {
+                    try {
+                        in.close();
+                        out.close();
+                        socket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }).start();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Connection Error");
+            alert.setContentText("Failed to connect to server: " + e.getMessage());
+            alert.showAndWait();
+            primaryStage.close();
         }
 
         primaryStage.setOnCloseRequest(event -> {
@@ -150,8 +178,9 @@ public class Client extends Application {
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(mainStage);
-        VBox vbox = new VBox(new Text("Game request from " + requester), new Button("Accept"));
-        vbox.setSpacing(10);
+        VBox vbox = new VBox(new Text("Zahtjev za igru poslat od " + requester), new Button("Prihvati"));
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPadding(new Insets(10, 10, 10, 10));
 
         Scene scene = new Scene(vbox, 200, 100);
         dialogStage.setScene(scene);
@@ -225,7 +254,7 @@ public class Client extends Application {
             if (winner.trim().equals("X")) {
                 alert.setContentText("Game over. It's tied.");
             } else if (winner.trim().equals("D")) {
-                alert.setContentText("Game over beacuse of disconnection.");
+                alert.setContentText("Game over because of disconnection.");
             } else {
                 alert.setContentText("Game over. The winner is " + winner);
 
@@ -322,7 +351,7 @@ public class Client extends Application {
                 secondSelected.setDisable(true);
                 if (myTurn) {
                     myPoints++;
-                    myPointsLabel.setText("Your points: " + myPoints);
+                    myPointsLabel.setText("Tvoji poeni: " + myPoints);
                     out.println("SCORE_CHANGE " + username + " " + myPoints);
                 }
                 resetTurn();
@@ -366,7 +395,7 @@ public class Client extends Application {
         private void resetTurn() {
             firstSelected = null;
             secondSelected = null;
-            statusLabel.setText(myTurn ? "Tvoj potez" : "Protivnikov potez");
+            statusLabel.setText(myTurn ? "Protivnikov potez" : "Tvoj potez");
         }
     }
 }
